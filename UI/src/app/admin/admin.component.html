@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 rightblock">
+            <table class="full">
+                <tr>
+                    <td class="full">
+                        Country
+                        <ul>
+                            <li><a  href="#" (click)="createCountry()">Create</a></li>
+                            <li><a href="#" (click)="viewCountry()">View</a></li>
+                        </ul>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <!-- country object --> 
+        <div class="col-md-8" *ngIf="countryStatus == 'view'">
+            <table class="table">
+                <tr>
+                    <th>Pincode</th>
+                    <th>Country</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>AreaCode</th>
+                    <th>Area</th>
+                    <th>Transport Zone</th>
+                    <th>Update</th>
+                </tr>
+                <tr *ngFor="let coun of countries">
+                    <td>{{coun.pincode}}</td>
+                    <td>{{coun.country}}</td>
+                    <td>{{coun.state}}</td>
+                    <td>{{coun.city}}</td>
+                    <td>{{coun.areacode}}</td>
+                    <td>{{coun.area}}</td>
+                    <td>{{coun.transportzone}}</td>
+                    <td><button (click)="updateCountry(coun.id)">Update</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-8" *ngIf="countryStatus == 'create'">
+            <form (ngSubmit)="createCountry(f)" #f="ngForm">
+                <div class="form-group ">
+                    <label class="control-label " for="pincode">
+                        Pincode
+                    </label>
+                    <input class="form-control" id="pincode" name="pincode" ngModel type="text"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="country">
+                        Country
+                    </label>
+                    <input class="form-control" id="country" name="country" ngModel type="text"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="state">
+                        State
+                    </label>
+                    <input class="form-control" id="state" ngModel name="text7" type="text"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="city">
+                        City
+                    </label>
+                    <input class="form-control" id="city" ngModel name="city" type="text"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="areacode">
+                        Area Code
+                    </label>
+                    <input class="form-control" id="areacode" ngModel name="areacode" type="text"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="area">
+                        Area
+                    </label>
+                    <input class="form-control" id="area" ngModel name="text5" type="text"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="transportzone">
+                        Transport Zone
+                    </label>
+                    <input class="form-control" id="transportzone" ngModel name="transportzone" type="text"/>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <button class="btn btn-primary " name="submit" type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- end of country -->
+
+    </div>
+</div>
