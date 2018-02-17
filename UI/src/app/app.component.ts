@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  showAdmin = false;
+  showUser = true;
+    
+    showAdminScreen(){
+        this.showAdmin = true;
+        this.showUser = false;
+    }
+    
+    showUserScreen(){
+        this.showUser = true;
+        this.showAdmin = false;
+    }
+    
 }

@@ -6,12 +6,19 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import  { CountryService } from './admin/country.service';
+import { TelephoneService } from './admin/telephone.service';
+
+import { UserComponent } from './user/user.component';
+import { UserRegister } from './user/Registration/register.component';
+import { RegisterService } from './user/Registration/register.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent
+    AdminComponent,
+    UserComponent,
+    UserRegister
     
   ],
   imports: [
@@ -19,7 +26,11 @@ import  { CountryService } from './admin/country.service';
     FormsModule,
     HttpModule
   ],
-  providers: [CountryService],
+  providers: [
+      CountryService,
+      TelephoneService,
+      RegisterService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

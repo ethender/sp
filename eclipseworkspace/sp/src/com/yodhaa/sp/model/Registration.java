@@ -24,6 +24,7 @@ public class Registration implements Serializable{
 	@Id
 	private String refnum;
 	private String companyName;
+	private Address contact;
 	private String email;
 	private Mobile mobile;
 	private Landline landline;
@@ -92,12 +93,19 @@ public class Registration implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	@Override
+	public Address getContact() {
+		return contact;
+	}
+	public void setContact(Address contact) {
+		this.contact = contact;
+	}
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((businesshour == null) ? 0 : businesshour.hashCode());
 		result = prime * result + ((companyName == null) ? 0 : companyName.hashCode());
+		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((insertdate == null) ? 0 : insertdate.hashCode());
 		result = prime * result + ((landline == null) ? 0 : landline.hashCode());
@@ -108,7 +116,7 @@ public class Registration implements Serializable{
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
-	@Override
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -126,6 +134,11 @@ public class Registration implements Serializable{
 			if (other.companyName != null)
 				return false;
 		} else if (!companyName.equals(other.companyName))
+			return false;
+		if (contact == null) {
+			if (other.contact != null)
+				return false;
+		} else if (!contact.equals(other.contact))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -169,13 +182,16 @@ public class Registration implements Serializable{
 			return false;
 		return true;
 	}
-	@Override
+	
 	public String toString() {
-		return "Registration [refnum=" + refnum + ", companyName=" + companyName + ", email=" + email + ", mobile="
-				+ mobile + ", landline=" + landline + ", person=" + person + ", businesshour=" + businesshour
-				+ ", insertdate=" + insertdate + ", lastmodified=" + lastmodified + ", status=" + status + "]";
+		return "Registration [refnum=" + refnum + ", companyName=" + companyName + ", contact=" + contact + ", email="
+				+ email + ", mobile=" + mobile + ", landline=" + landline + ", person=" + person + ", businesshour="
+				+ businesshour + ", insertdate=" + insertdate + ", lastmodified=" + lastmodified + ", status=" + status
+				+ "]";
 	}
 	
+	
+			
 		
 }
 

@@ -6,16 +6,24 @@
                     <td class="full">
                         Country
                         <ul>
-                            <li><a  href="#" (click)="createCountry()">Create</a></li>
+                            <li><a  href="#" (click)="showCreateCountry()">Create</a></li>
                             <li><a href="#" (click)="viewCountry()">View</a></li>
                         </ul>
                     </td>
                 </tr>
-
+                <tr>
+                    <td class="full">
+                        Telephone
+                        <ul>
+                            <li><a href="#" (click)="showTelephoneCountry()">Create</a></li>
+                            <li><a href="#" (click)="viewTelePhone()">View</a></li>
+                        </ul>
+                    </td>
+                </tr>
             </table>
         </div>
         <!-- country object --> 
-        <div class="col-md-8" *ngIf="countryStatus == 'view'">
+        <div class="col-md-8" *ngIf="views.countryView">
             <table class="table">
                 <tr>
                     <th>Pincode</th>
@@ -39,7 +47,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-md-8" *ngIf="countryStatus == 'create'">
+        <div class="col-md-8" *ngIf="views.countryCreate">
             <form (ngSubmit)="createCountry(f)" #f="ngForm">
                 <div class="form-group ">
                     <label class="control-label " for="pincode">
@@ -94,6 +102,61 @@
         </div>
 
         <!-- end of country -->
+
+        <!-- start of Telephone -->
+
+        <div class="col-md-8" *ngIf="views.teleCreate">
+            <form method="post" (ngSubmit)="createTelephone(tele)" #tele="ngForm">
+                <div class="form-group ">
+                    <label class="control-label " for="country">
+                        country
+                    </label>
+                    <input class="form-control" id="country" name="country" ngModel type="text"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="telecode">
+                        telecode
+                    </label>
+                    <input class="form-control" id="telecode" name="telecode" ngModel type="text"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="currency">
+                        currency
+                    </label>
+                    <input class="form-control" id="currency" name="currency" ngModel  type="text"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="lenofcode">
+                        Length Of Code
+                    </label>
+                    <input class="form-control" id="lenofcode" name="lenofcode" ngModel type="text"/>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <button class="btn btn-primary " name="submit" type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="col-md-8" *ngIf="views.teleView">
+            <table class="table">  
+                <tr>
+                    <th>Country</th>
+                    <th>Telephone Code</th>
+                    <th>Currency</th>
+                    <th>Length Of Code</th>
+                </tr>
+                <tr *ngFor="let tele of telephones">
+                    <td>{{tele.country}}</td>
+                    <td>{{tele.telecode}}</td>
+                    <td>{{tele.currency}}</td>
+                    <td>{{tele.lenofcode}}</td>
+                </tr>
+            </table>
+        </div>
 
     </div>
 </div>

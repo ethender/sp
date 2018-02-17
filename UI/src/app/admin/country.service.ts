@@ -10,6 +10,7 @@ export class CountryService{
     constructor(private http:Http){}
     
     public getAllcountries(){
+        console.log("comming to all countries");
         return this.http.get(this.baseUrl+"/admin/allcountries");
     }
     

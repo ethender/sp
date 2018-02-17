@@ -1,0 +1,269 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click)="showRegistration()">Create</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click)="showAllRegistrations()">View</a>
+            </li>
+        </ul>
+    </div>
+</div>
+  <div class="row" *ngIf="views.normalView">
+    <div class="col-md-12">
+        <h1>Registration</h1>
+    </div>
+</div>
+
+<div class="row" *ngIf="views.regCreate">
+    <div id="registration" class="col-md-12">
+        <form method="post" (ngSubmit)="createRegistration(reg)" #reg="ngForm">
+            <div class="form-group ">
+                <label class="control-label requiredField" for="companyName">
+                    Company
+                    <span class="asteriskField">
+                        *
+                    </span>
+                </label>
+                <input class="form-control" id="companyName"  name="companyName" ngModel type="text"/>
+            </div>
+            <div class="form-group ">
+                <label class="control-label requiredField" for="email">
+                    Email
+                    <span class="asteriskField">
+                        *
+                    </span>
+                </label>
+                <input class="form-control" id="email" name="email" ngModel type="text"/>
+            </div>
+            <!-- mobile -->
+            <div class="row form-group">
+                <div class="col-md-12 form-group ">
+                    <label class="control-label " for="countrycode">
+                        Mobile
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <select class="select form-control" id="countrycode" name="countrycode" ngModel>
+                        <option value="+91">+91</option>
+                        <option value="+1">+1</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group ">
+                    <input class="form-control" id="phnumber" name="phnumber" ngModel type="text"/>
+                </div>
+            </div>
+            <!-- Landline -->
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label class="control-label">Landline</label>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label class="control-label " for="landlinecode">
+                        Landline Code
+                    </label>
+                    <select class="select form-control" id="landlinecode" name="landlinecode" ngModel>
+                        <option *ngFor="let code of service.telephonies" [value]="code.telecode">
+                            {{code.telecode}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 form-group">
+                    <label class="control-label " for="areacode">
+                        Area Code
+                    </label>
+                    <input class="form-control" id="areacode" name="areacode" ngModel type="text" />    
+                </div>
+                <div class="col-md-4 form-group">
+                    <label class="control-label " for="number">
+                        number
+                    </label>
+                    <input class="form-control form-control" id="lannumber" name="lannumber" ngModel type="text"/>
+                </div>
+            </div>
+            <!-- Name -->
+            <div class="row">
+                <div class="col-md-4 form-group ">
+                    <label class="control-label " for="salutation">
+                        Salutation
+                    </label>
+                    <select class="select form-control" id="salutation" name="salutation" ngModel>
+                        <option value="Mr">
+                            Mr
+                        </option>
+                        <option value="Mrs">
+                            Mrs
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label class="control-label requiredField" for="firstname">
+                        First name
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" id="firstname" name="firstname" ngModel type="text"/>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label class="control-label requiredField" for="text6">
+                        Last name
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" id="lastname" name="lastname" ngModel type="text"/>
+                </div>
+            </div>
+            <!-- Business Hour -->
+
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Business Hours</label>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label class="control-label " for="format">
+                        Format
+                    </label>
+                    <input class="form-control" id="format" name="format" ngModel type="text"/>
+                </div>
+                <div class="col-md-4 form-group ">
+                    <label class="control-label " for="text8">
+                        From
+                    </label>
+                    <input class="form-control" id="from" name="from" ngModel type="text"/>
+                </div>
+                <div class="col-md-4 form-group ">
+                    <label class="control-label " for="to">
+                        To
+                    </label>
+                    <input class="form-control" id="to" name="to" ngModel type="text"/>
+                </div>
+            </div>
+            <!-- Address -->
+            <div class="row">
+
+                <div class=" col-md-12 form-group ">
+                    <label class="control-label " for="street1">
+                        street1
+                    </label>
+                    <input class="form-control" id="street1" name="street1" ngModel type="text"/>
+                </div>
+                <div class="col-md-12 form-group ">
+                    <label class="control-label " for="street2">
+                        street2
+                    </label>
+                    <input class="form-control" id="street2" name="street2" ngModel type="text"/>
+                </div>
+                <div class="col-md-12 form-group ">
+                    <label class="control-label " for="area">
+                        Area
+                    </label>
+                    <input class="form-control" id="area" name="area" ngModel type="text"/>
+                </div>
+                <div class="col-md-12 form-group ">
+                    <label class="control-label " for="text11">
+                        City
+                    </label>
+                    <input class="form-control" id="city" name="city" ngModel type="text"/>
+                </div>
+                <div class="col-md-12 form-group ">
+                    <label class="control-label " for="district">
+                        District
+                    </label>
+                    <input class="form-control" id="district" name="district" ngModel type="text"/>
+                </div>
+                <div class="col-md-12 form-group ">
+                    <label class="control-label " for="pincode">
+                        Pincode
+                    </label>
+                    <input class="form-control" id="pincode" name="pincode" ngModel type="text"/>
+                </div>
+                <div class="col-md-12 form-group ">
+                    <label class="control-label " for="state">
+                        State
+                    </label>
+                    <input class="form-control" id="state" name="state" ngModel type="text"/>
+                </div>
+                <div class="col-md-12 form-group ">
+                    <label class="control-label " for="country">
+                        Country
+                    </label>
+                    <select class="select form-control" id="country" name="country" ngModel>
+                         <option *ngFor="let coun of service.countries" [value]="coun.country">
+                            {{coun.country}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button class="btn btn-primary " name="submit" type="submit">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- View Create -->
+<div class="row" *ngIf="views.regViews">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Reference Number</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Landline</th>
+                <th>Contact Person</th>
+                <th>Address</th>
+                <th>Business Hours</th>
+                <th>Registered Time</th>
+                <th>Status</th>
+            </tr>
+            <tr *ngFor="let re of service.regis">
+                <td>{{re.refnum}}</td>
+                <td>{{re.companyName}}</td>
+                <td>{{re.email}}</td>
+                <!-- mobile -->
+                <td>
+                    <span>{{re.mobile.countrycode}}&nbsp;{{re.mobile.number}}</span>
+                </td>
+                <!-- Landline -->
+                <td>
+                    <p>{{re.landline.landlinecode}}-{{re.landline.areacode}}&nbsp;{{re.landline.number}}</p>
+                </td>
+                <!-- Person -->
+                <td>
+                    <span>{{re.person.salutation}}.&nbsp;{{re.person.firstname}}&nbsp;{{re.person.lastname}}</span>
+                </td>
+                <!-- Contact Address -->
+                <td>
+                    <p style="font-size: 14px;">
+                        <span>
+                        {{re.contact.street1}}, &nbsp;
+                        {{re.contact.street2}},</span><br/>
+                        {{re.contact.area}}, &nbsp;
+                        {{re.contact.city}}, &nbsp;
+                        {{re.contact.district}},<br/>
+                        {{re.contact.state}}, &nbsp;
+                        {{re.contact.country}}. &nbsp;
+                        {{re.contact.pincode}}<br/>
+                    </p>
+                </td>
+                <!-- Business Hours -->
+                <td>
+                    <span>{{re.businesshour.format}}&nbsp;{{re.businesshour.from}}-{{re.businesshour.to}}</span>
+                </td>
+                <!-- Registered Time -->
+                <td>{{re.insertdate | date:'medium'}}</td>
+                <!-- Registered Status -->
+                <td>{{re.status}}</td>
+            </tr>
+        </table>    
+    </div>
+</div>

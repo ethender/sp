@@ -3,15 +3,20 @@
         <div class="col-md-12">
             <table>
                 <tr>
-                    <td><button class="btn btn-outline-primary">Admin</button></td>
-                    <td><button class="btn btn-outline-primary">User</button></td>
+                    <td><button (click)="showAdminScreen()" class="btn btn-outline-primary">Admin</button></td>
+                    <td><button (click)="showUserScreen()" class="btn btn-outline-primary">User</button></td>
                 </tr>
             </table>
         </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="showAdmin">
         <div class="col-md-12">
             <app-admin></app-admin>
+        </div>
+    </div>
+    <div class="row" *ngIf="showUser">
+        <div class="col-md-12">
+            <app-user></app-user>
         </div>
     </div>
 </div>

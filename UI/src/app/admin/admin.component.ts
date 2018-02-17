@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { CountryService } from './country.service';
 import { Response } from '@angular/http';
 import { NgForm } from '@angular/forms';
+
+import { CountryService } from './country.service';
+import { TelephoneService } from './telephone.service';
 
 
 @Component({
@@ -11,13 +13,36 @@ import { NgForm } from '@angular/forms';
 })
 export class AdminComponent {
 
-    constructor(private country: CountryService){}
-    countryStatus = "create";
+    views = {countryCreate:true,countryView:false,teleCreate:false,teleView:false};
+    
     countries: any[] = [];
+    telephones: any[] = [];
     errorMsg = "Something went wrong, look Console for more information";
+    
+    constructor(private country: CountryService, private tele: TelephoneService){
+        
+    }
+    
+    private whichView(whichView:String){
+        let keys = Object.keys(this.views);
+        for(let key of keys){
+            if(key == whichView){
+                this.views[key] = true;
+            }else{
+                this.views[key] = false;
+            }
+        }
+    }
+    
+    
+    showCreateCountry(){
+        this.whichView("createCountry");
+    }
 
+    showTelephoneCountry(){
+        this.whichView("teleCreate");
+    }
     createCountry(form: NgForm){
-        this.countryStatus = "create";
         const value = form.value;
         const obj = {};
         obj["pincode"] = value.pincode;
@@ -41,7 +66,7 @@ export class AdminComponent {
     }
 
     viewCountry(){
-        this.countryStatus = "view";
+        this.whichView("countryView");
         this.country.getAllcountries()
             .subscribe(
             (response: Response)=>{
@@ -59,6 +84,41 @@ export class AdminComponent {
         //this.countryStatus = "update";    
     }
 
+    
+    createTelephone(form: NgForm){
+        const value = form.value;
+        const telephone = {};
+        telephone["country"] = value.country;
+        telephone["telecode"] = value.telecode;
+        telephone["currency"] = value.currency;
+        telephone["lenofcode"] = value.lenofcode;
+        this.tele.createTelephone(telephone)
+        .subscribe(
+            (response: Response)=>{
+                console.log(response.json());
+                alert("Created Telephone Successfully");
+            },
+            (error: Response)=>{
+                console.log(error.json());
+                alert(this.errorMsg);
+            }
+        )
+    }
+    
+    
+    viewTelePhone(){
+        this.whichView("teleView");
+        this.tele.viewAllTelephones()
+        .subscribe(
+        (response: Response)=>{
+          this.telephones = response.json();  
+        },
+        (error:Response)=>{
+            console.log(error.json());
+            alert(this.errorMsg);
+        }
+        );
+    }
 
 }
 
