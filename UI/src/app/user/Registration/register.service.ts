@@ -14,8 +14,8 @@ export class RegisterService{
     telephonies : any[];
     regis: any[];
 
-    private baseUrl = "http://192.168.2.9:8080/sp/"
-
+    //private baseUrl = "http://192.168.2.9:8080/sp/"
+    private baseUrl = "http://183.82.117.166:8080/sp/";
 
     constructor(
     private http:Http,

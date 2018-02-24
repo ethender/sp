@@ -5,8 +5,8 @@ import 'rxjs/Rx';
 @Injectable()
 export class CountryService{
     
-    baseUrl = "http://192.168.2.9:8080/sp";
-    
+    //baseUrl = "http://192.168.2.9:8080/sp";
+    baseUrl = "http://183.82.117.166:8080/sp/";
     constructor(private http:Http){}
     
     public getAllcountries(){

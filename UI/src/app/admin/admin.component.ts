@@ -36,7 +36,8 @@ export class AdminComponent {
     
     
     showCreateCountry(){
-        this.whichView("createCountry");
+        this.whichView("countryCreate");
+        console.log("Country Create "+this.views.countryCreate);
     }
 
     showTelephoneCountry(){
